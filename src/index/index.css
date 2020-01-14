@@ -1,0 +1,378 @@
+body {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  display:flex;
+  flex-direction: column;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #909497;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 500%;
+  animation: color_change 10s infinite linear;
+  -webkit-animation: color_change 10s infinite linear;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+#span{
+  font-size:40px;
+  cursor:pointer;
+  position: fixed;
+  display: inline-block;
+  float: left;
+  margin-left: 10px;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 1000%;
+  animation: color_change 5s infinite linear;
+  -webkit-animation: color_change 5s infinite linear;
+}
+
+.section1 {
+    /*
+    background-image: url("../images/yeah.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    */
+    height: 700px;
+    text-align: center;
+    transition: margin-left .5s;
+}
+
+.title{
+  font-family: 'Berkshire Swash', cursive;
+  display: block;
+}
+
+#bobo{
+  font-size: 90px;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 500%;
+  animation: color_change 10s infinite linear;
+  -webkit-animation: color_change 10s infinite linear;
+
+}
+
+.intro{
+  color: white;
+  font-family: Time New Roman;
+  font-size: 25px;
+  margin-left: 20%;
+  margin-right: 20%;
+  background: linear-gradient(to right, #28e0b0, #c328e0, #28a1e0, #e0286b);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 500%;
+  animation: color_change 10s infinite linear;
+  -webkit-animation: color_change 10s infinite linear;
+}
+
+.section2{
+  font-family: Time New Roman;
+  height: 700px;
+}
+#Me{
+  text-align: center;
+  font-size: 80px;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 500%;
+  animation: color_change 10s infinite linear;
+  -webkit-animation: color_change 10s infinite linear;
+}
+.box{
+  display: inline-block;
+  width: 25%;
+  font-size: 20px;
+  border: 1px solid black;
+}
+.box:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
+.pics{
+width: 100%;
+}
+
+#box1{
+  margin-left: 17%;
+  margin-right: 10%;
+}
+#box2{
+  margin-left: 5%;
+}
+
+.intro1{
+  font-weight: bold;
+  margin-top: 1%;
+  margin-left: 13%;
+  margin-right: 13%;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+#pp{
+  background: linear-gradient(to right, #28e0b0, #c328e0, #28a1e0, #e0286b);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 500%;
+  animation: color_change 10s infinite linear;
+  -webkit-animation: color_change 10s infinite linear;
+}
+#p1{
+  font-size: 16px;
+}
+#p2{
+
+  font-size:16px;
+}
+
+.section3{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+  font-family: Time New Roman;
+  text-align: center;
+  height: 700px;
+}
+
+#core{
+  font-size: 80px;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 500%;
+  animation: color_change 10s infinite linear;
+  -webkit-animation: color_change 10s infinite linear;
+}
+.section3 img{
+  width: 14%;
+  float: left;
+  margin: 30px;
+}
+
+.Ctech{
+}
+
+#cc{
+  width: 12%;
+}
+#c_{
+}
+#html{
+}
+#jq{
+}
+#js{
+}
+#pyret{
+}
+#python{
+}
+#css{
+}
+#tk{
+}
+
+.footer{
+  background-color:white;
+  position: relative;
+  width: 100%;
+  height: 160px;
+  color: #777;
+  text-align: center;
+  z-index: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.contacts span{
+  width : 100% auto;
+  height: 100% auto;
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 6px 10px;
+  margin: 10px;
+}
+
+.contacts a{color: #626567;}
+
+.links a{
+  color: #626567;
+  text-decoration: none;
+  width : 100%;
+  height : 60px;
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 6px 20px;
+  margin: 10px;
+}
+
+@keyframes color_change {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-webkit-keyframes color_change{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/*
+ul.list{
+  list-style-type: none;
+
+}
+
+li a{
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+  color: purple;
+}
+
+.icons{
+  float: left;
+}
+
+#first{
+  position: absolute;
+  display: block;
+  width: 60%;
+  top: 25%;
+  margin: auto;
+  text-align: center;
+  font-size: 300px;
+  color: white;
+  animation: breathe 10s infinite;
+  -webkit-animation: breathe 3s infinite linear;
+  transition: 2s linear;
+}
+
+#bohong{
+  visibility: hidden;
+  position: absolute;
+  display: block;
+  width: 60%;
+  top: 47%;
+  margin: auto;
+  text-align: center;
+  color: white;
+  animation: breathe 10s infinite;
+  -webkit-animation: breathe 3s infinite linear;
+  transition: 2s linear;
+
+}
+
+.icons #first:hover{
+  transform: scale(0,0) rotate(1800deg);
+}
+
+.icons #bohong:hover{
+  visibility: visible;
+  transform: scale(5) rotate(1800deg);
+}
+
+#second{
+  position: absolute;
+  display: block;
+  width: 140%;
+  top: 25%;
+  margin: auto;
+  text-align: center;
+  font-size: 300px;
+  color: white;
+  animation: breathe 10s infinite;
+  -webkit-animation: breathe 3s infinite linear;
+}
+
+.yingjie{
+  visibility: hidden;
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 47%;
+  margin: auto;
+  text-align: center;
+  color: white;
+  animation: breathe 10s infinite;
+  -webkit-animation: breathe 3s infinite linear;
+  transition: 2s linear;
+}
+
+#second:hover{
+  transform: scale(0,0) rotate(1800deg);
+}
+
+.yingjie:hover{
+  visibility: visible;
+  transform: scale(5) rotate(1800deg);
+}
+
+@keyframes breathe {
+  0%{
+    /*transform: rotate(0deg);
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.4;
+  }
+  100%{
+    /*transform: rotate(360deg);
+    opacity: 1;
+
+  }
+}
+
+@-webkit-keyframes breathe{
+  0%{
+    /*transform: rotate(0deg);
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.4;
+  }
+  100%{
+    /*transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+*/
