@@ -1,0 +1,298 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Snake</title>
+
+		<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+		<style type="text/css">
+.play{
+	background: #FFB300;
+	color: white;
+	height: 500;
+	width: 700;
+	text-align: left;
+	margin: 0 auto;
+}
+
+.board{
+	border-style: solid solid solid solid;
+	color: white;
+	position:relative;
+	width: 650;
+	height: 420;
+	text-align: center;
+	font-family: fantasy;
+	margin: 0 auto;
+}
+.snake{
+	background: black;
+	position: absolute;
+	vertical-align: bottom;
+	height: 10; width: 10;
+	margin:0px; padding: 0px;
+}
+.food{
+	background:red;
+	height: 10; width: 10;
+	position: absolute;
+	vertical-align: bottom;
+	margin:0px; padding: 0px;}
+
+		</style>
+  </head>
+
+	<body>
+		<h1 style="color: #FFB300; font-family: fantasy; text-align: center;">Snake</h1>
+		<h1 style="color: #FFB300; font-family: fantasy; text-align: center; font-size:20px;">Hint: use &uarr; &rarr; &darr; &larr; to move and eat the "food"</h1>
+		<div class="play">
+			<p id="blue" style=" color: white; text-align: right;"></p>
+      <div id="map" class="board"> </div>
+    </div>
+
+  </body>
+ <script>
+    var block=document.createElement("div");    //for head
+    var fblock = document.createElement("div");
+    var speed= 100;  //越大越慢，毫秒
+    var food=0;
+    var die=false;
+    var foodarray, sbody;
+    var score=0;
+    var len; //body length, head is at the [0].
+    var bodyX = new Array();
+    var bodyY = new Array();
+
+    function showscore(){
+      var p=document.getElementById("blue");
+      p.innerHTML="Score: "+score;}
+
+    function init(x,y){
+      var arr=new Array(x);
+    for(var i=0;i<=x;i++){      //[width][height]
+       arr[i]=new Array(y);}
+    for(var a=0;a<=x;a++){
+      for(var b=0;b<=y;b++){
+        arr[a][b]=0;
+      }}return arr; }
+
+    function snake(x,y){
+      block.style.left =x +'px';
+      block.style.top = y +'px';
+      block.className = "snake";
+      block.id = "head";
+      sbody[x][y]=1;
+      var map1=document.getElementById("map");
+      map1.appendChild(block);
+    }
+
+    function ClearAllIntervals() {
+        for (var i = 1; i < 9999; i++)
+        window.clearInterval(i);}
+
+    function dead(){        //show message, and clean all variables
+      die = true;
+      food=0;
+      len=0;
+      var m=document.createElement("h2");
+      m.style.color="red";
+      m.id="deadmessage";                   //id is deadmessage
+      var t=document.createTextNode("You Lose!");
+      var u=document.createElement('br');
+      var v=document.createElement("P");
+      v.style.color="red"
+      var w=document.createTextNode("Press Space to restart");
+      v.appendChild(w);  m.appendChild(t);   m.appendChild(u);
+      var a=document.getElementById("map");
+      a.appendChild(m);
+      a.appendChild(v);}
+
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min;}
+
+    function cfood(){
+      var c= getRandomInt(0,64)*10;
+      var d= getRandomInt(0,41)*10;
+      fblock.style.left = c +'px';
+      fblock.style.top = d +'px';
+      fblock.className = "food";
+      fblock.id = "eatable";                   //food's id is eatable
+      foodarray[c][d]=1;
+      food++;
+      var map1=document.getElementById("map");
+      map1.appendChild(fblock);}
+
+    function checkfood(x,y){
+      if(foodarray[x][y]==1){
+        var e= document.getElementById("eatable");
+        e.parentNode.removeChild(e);
+          foodarray[x][y]=0;
+          food--;
+          score++;
+          len++;
+          showscore();
+          if(food==0)
+            cfood();
+          return true;}
+        else
+          return false; }
+
+    function body(x,y){   //grow body
+      if(len>0){
+        sbody[x][y]=1;
+        bodyX[bodyX.length]=x;
+        bodyY[bodyY.length]=y;
+        if(len>1){
+          for(var i=len; i>=1; i--){
+          var t=document.getElementById("body"+i);
+          if(t)
+            t.parentNode.removeChild(t);}
+          for(var j=1;j<=len; j++){
+          var bd=document.createElement("div");
+          bd.className = "snake";
+          bd.style.left =bodyX[bodyX.length-j] +'px';
+          bd.style.top = bodyY[bodyY.length-j] +'px';
+          bd.id="body"+j;
+          var map1=document.getElementById("map");
+          map1.appendChild(bd);
+          }}
+        if(len==1)
+          tail();}
+        }
+
+    function tail(){
+      if(len>0){
+       var t=document.getElementById("tail");
+       if(t){               //remove the old tail
+        sbody[parseInt(t.style.left)][parseInt(t.style.top)]=0;
+        t.parentNode.removeChild(t);}}
+      }
+
+    function movetail(){
+      if(len>0){
+      var x=bodyX[bodyX.length-len];
+      var y=bodyY[bodyX.length-len];
+        var bd=document.createElement("div");
+        bd.className = "snake";
+        bd.style.left =x +'px';
+        bd.style.top = y +'px';
+        bd.id="tail";
+        var map1=document.getElementById("map");
+        map1.appendChild(bd);}
+    }
+
+    window.onload= star();
+    function star(){
+      foodarray=init(640,410);
+      sbody=init(640,410);
+      die=false;
+      food=0;
+      len=0;
+      snake(150,150);
+      showscore();}
+
+    document.onkeydown=function (e){
+      var e=window.event||e;
+      var num = e.keyCode;
+      var h = document.getElementById("head");
+      var x=parseInt(h.style.left); var y=parseInt(h.style.top);
+
+      if(num==32)
+        move(num);
+      if((num==37)&& ((x-10) !=bodyX[bodyX.length-1]) && (y!= bodyY[bodyX.length-1]))
+        move(num);
+      if((num==38)&& (x!=bodyX[bodyX.length-1]) && ((y-10)!= bodyY[bodyX.length-1]))
+       move(num);
+      if((num==39)&& ((x+10) !=bodyX[bodyX.length-1]) && (y!= bodyY[bodyX.length-1]))
+        move(num);
+      if((num==40)&& (x !=bodyX[bodyX.length-1]) && ((y+10)!= bodyY[bodyX.length-1]))
+        move(num); }
+
+    function move(num){
+      var h = document.getElementById("head");
+      ClearAllIntervals();
+      if((num==32)&&(die==true)){               //restart the game
+        var elm=document.getElementById("map");
+        while (elm.hasChildNodes()) {
+          elm.removeChild(elm.lastChild);}
+        star();
+        die=false;}
+
+      if(die==false){
+        if(food==0)
+          cfood();
+
+        switch(num){
+            case 37: //left
+               var id=setInterval(left,speed);
+               function left(){
+                if((parseInt(h.style.left)==0)||(sbody[parseInt(h.style.left)-10][parseInt(h.style.top)]==1)){
+                  clearInterval(id);
+                  dead();}
+
+                else{
+                  var x=parseInt(h.style.left); var y=parseInt(h.style.top);
+                  h.parentNode.removeChild(h); sbody[x][y]=0;
+                  snake(x-10,y);
+                  body(x,y);
+                  if(!checkfood(x-10,y)){
+                   tail();
+                    movetail();}
+                  }}
+              break;
+            case 38: //up
+                var id=setInterval(top,speed);
+                function top(){
+                  if((parseInt(h.style.top)==0)||(sbody[parseInt(h.style.left)][parseInt(h.style.top)-10]==1)){
+                    clearInterval(id);
+                    dead();}
+                  else{
+                    var x=parseInt(h.style.left); var y=parseInt(h.style.top)
+                    h.parentNode.removeChild(h); sbody[x][y]=0;
+                    snake(x,y-10);
+                    body(x,y);
+                    if(!checkfood(x,y-10))
+                      {tail();
+                        movetail();}
+                  }}
+              break;
+            case 39: //right
+              var id=setInterval(right,speed);
+              function right(){
+                if((parseInt(h.style.left)== 640)||(sbody[parseInt(h.style.left)+10][parseInt(h.style.top)]==1)){
+                  clearInterval(id);
+                  dead();}
+
+                else{
+                  var x=parseInt(h.style.left); var y=parseInt(h.style.top)
+                  h.parentNode.removeChild(h); sbody[x][y]=0;
+                 snake(x+10,y); body(x,y);
+                  if(!checkfood(x+10,y))
+                    {tail();
+                      movetail();}
+                }}
+              break;
+            case 40: //down
+              var id=setInterval(down,speed);
+              function down(){
+                if((parseInt(h.style.top)==410)||(sbody[parseInt(h.style.left)][parseInt(h.style.top)+10]==1)){
+                  clearInterval(id);
+                  dead();}
+
+                else{
+                  var x=parseInt(h.style.left); var y=parseInt(h.style.top)
+                  h.parentNode.removeChild(h); sbody[x][y]=0;
+                  snake(x,y+10);
+                  body(x,y);
+                  if(!checkfood(x,y+10))
+                  { tail();
+                    movetail();}
+                  }}
+              break;
+            default:
+              break;}}}
+
+
+ </script>
+</html>
